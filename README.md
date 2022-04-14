@@ -4,13 +4,11 @@
  <p>... is a GUI tool to get the best wordle guess based on available information.</p>
   <a href="https://github.com/avighnac/wordle-solver/releases">
     <img src="https://img.shields.io/github/v/release/avighnac/wordle-solver?include_prereleases&label=Latest%20Release" />
-</div>
-
- ## Screenshot
- <div align="center">
-  <img src="https://user-images.githubusercontent.com/74564976/163429736-e77fc9b9-64b8-41dc-8f4a-c2b529ec671e.png"></img>
  </div>
- 
+ <div align="center">
+   <img src="https://user-images.githubusercontent.com/74564976/163429736-e77fc9b9-64b8-41dc-8f4a-c2b529ec671e.png" />
+ </div>
+  
  ## Download instructions
  Unfortulately, this application is Windows exclusive. But, for the people on Windows: Download the latest release and 'englishWords.dat'. Make sure that **englishWords.dat is located in the same directory as that of the executable.**
  

@@ -25,49 +25,6 @@ static std::string to_standard_string(System::String ^ string) {
   return returnString;
 }
 
-static std::string get_guesses(std::string include, std::string exclude,
-                               std::string correctPositions,
-                               std::string incorrectPositions) {
-  if (correctPositions.empty())
-    correctPositions = ".....";
-  if (incorrectPositions.empty())
-    incorrectPositions = ".....";
-
-  while (correctPositions.length() < 5)
-    correctPositions.push_back('.');
-  while (incorrectPositions.length() < 5)
-    incorrectPositions.push_back('.');
-
-  std::string answer;
-  for (auto &i : englishWords) {
-    bool hasAllIncludedLetters = true;
-    for (auto &charac : include)
-      if (i.find(charac) == std::string::npos)
-        hasAllIncludedLetters = false;
-    bool doesNotHaveAllExcludedLetters = true;
-    for (auto &charac : exclude)
-      if (i.find(charac) != std::string::npos)
-        doesNotHaveAllExcludedLetters = false;
-
-    bool isInCorrectPositions = true;
-    for (auto pos = 0; pos < i.length(); pos++)
-      if (correctPositions.substr(pos, 1) != ".")
-        if (correctPositions.substr(pos, 1) != i.substr(pos, 1))
-          isInCorrectPositions = false;
-
-    bool noIncorrectPositions = true;
-    for (auto pos = 0; pos < i.length(); pos++)
-      if (incorrectPositions.substr(pos, 1) != ".")
-        if (incorrectPositions.substr(pos, 1) == i.substr(pos, 1))
-          noIncorrectPositions = false;
-
-    if (hasAllIncludedLetters && doesNotHaveAllExcludedLetters &&
-        isInCorrectPositions && noIncorrectPositions)
-      answer += i + "\n";
-  }
-  return answer;
-}
-
 std::string include, exclude, correctPositions, incorrectPositions;
 
 /// <summary>
@@ -130,6 +87,12 @@ private:
   System::Windows::Forms::RichTextBox ^ bestGuessesTextBox;
 
 private:
+  System::Windows::Forms::Label ^ wordFileFound;
+
+private:
+
+
+private:
 private:
 private:
 private:
@@ -146,11 +109,6 @@ private:
   /// the contents of this method with the code editor.
   /// </summary>
   void InitializeComponent(void) {
-    std::ifstream wordle_words("englishWords.dat");
-    std::string word;
-    while (wordle_words >> word)
-      englishWords.push_back(word);
-
     this->label1 = (gcnew System::Windows::Forms::Label());
     this->label2 = (gcnew System::Windows::Forms::Label());
     this->includeTextBox = (gcnew System::Windows::Forms::RichTextBox());
@@ -163,6 +121,7 @@ private:
     this->incorrectPositionsTextBox =
         (gcnew System::Windows::Forms::RichTextBox());
     this->bestGuessesTextBox = (gcnew System::Windows::Forms::RichTextBox());
+    this->wordFileFound = (gcnew System::Windows::Forms::Label());
     this->SuspendLayout();
     //
     // label1
@@ -266,11 +225,23 @@ private:
     this->bestGuessesTextBox->TextChanged += gcnew System::EventHandler(
         this, &GetWordleWordGUI::bestGuessesTextBox_TextChanged);
     //
+    // wordFileFound
+    //
+    this->wordFileFound->AutoSize = true;
+    this->wordFileFound->ForeColor = System::Drawing::Color::Red;
+    this->wordFileFound->Location = System::Drawing::Point(71, 9);
+    this->wordFileFound->Name = L"wordFileFound";
+    this->wordFileFound->Size = System::Drawing::Size(0, 16);
+    this->wordFileFound->TabIndex = 11;
+    this->wordFileFound->Click +=
+        gcnew System::EventHandler(this, &GetWordleWordGUI::label6_Click);
+    //
     // GetWordleWordGUI
     //
     this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
     this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
     this->ClientSize = System::Drawing::Size(609, 312);
+    this->Controls->Add(this->wordFileFound);
     this->Controls->Add(this->bestGuessesTextBox);
     this->Controls->Add(this->incorrectPositionsTextBox);
     this->Controls->Add(this->label5);
@@ -286,6 +257,58 @@ private:
     this->ResumeLayout(false);
     this->PerformLayout();
   }
+
+  static std::string get_guesses(std::string include, std::string exclude,
+                                 std::string correctPositions,
+                                 std::string incorrectPositions) {
+    if (englishWords.empty()) {
+      std::ifstream wordle_words("englishWords.dat");
+      std::string word;
+      while (wordle_words >> word)
+        englishWords.push_back(word);
+      wordle_words.close();
+    }
+
+    if (correctPositions.empty())
+      correctPositions = ".....";
+    if (incorrectPositions.empty())
+      incorrectPositions = ".....";
+
+    while (correctPositions.length() < 5)
+      correctPositions.push_back('.');
+    while (incorrectPositions.length() < 5)
+      incorrectPositions.push_back('.');
+
+    std::string answer;
+    for (auto &i : englishWords) {
+      bool hasAllIncludedLetters = true;
+      for (auto &charac : include)
+        if (i.find(charac) == std::string::npos)
+          hasAllIncludedLetters = false;
+      bool doesNotHaveAllExcludedLetters = true;
+      for (auto &charac : exclude)
+        if (i.find(charac) != std::string::npos)
+          doesNotHaveAllExcludedLetters = false;
+
+      bool isInCorrectPositions = true;
+      for (auto pos = 0; pos < i.length(); pos++)
+        if (correctPositions.substr(pos, 1) != ".")
+          if (correctPositions.substr(pos, 1) != i.substr(pos, 1))
+            isInCorrectPositions = false;
+
+      bool noIncorrectPositions = true;
+      for (auto pos = 0; pos < i.length(); pos++)
+        if (incorrectPositions.substr(pos, 1) != ".")
+          if (incorrectPositions.substr(pos, 1) == i.substr(pos, 1))
+            noIncorrectPositions = false;
+
+      if (hasAllIncludedLetters && doesNotHaveAllExcludedLetters &&
+          isInCorrectPositions && noIncorrectPositions)
+        answer += i + "\n";
+    }
+    return answer;
+  }
+
 #pragma endregion
 private:
   System::Void label1_Click(System::Object ^ sender, System::EventArgs ^ e) {}
@@ -315,6 +338,15 @@ private:
   System::Void includeTextBox_TextChanged_1(System::Object ^ sender,
                                             System::EventArgs ^ e) {
     include = to_standard_string(includeTextBox->Text);
+    if (englishWords.empty()) {
+      std::ifstream wordle_words("englishWords.dat");
+      if (wordle_words.fail())
+        wordFileFound->Text =
+            "Error: 'englishWords.dat' cannot be found in the same "
+            "directory as this exe file.";
+      else
+        wordFileFound->Text = "";
+    }
     bestGuessesTextBox->Text = gcnew String(
         get_guesses(include, exclude, correctPositions, incorrectPositions)
             .data());
@@ -324,6 +356,15 @@ private:
   System::Void excludeTextBox_TextChanged(System::Object ^ sender,
                                           System::EventArgs ^ e) {
     exclude = to_standard_string(excludeTextBox->Text);
+    if (englishWords.empty()) {
+      std::ifstream wordle_words("englishWords.dat");
+      if (wordle_words.fail())
+        wordFileFound->Text =
+            "Error: 'englishWords.dat' cannot be found in the same "
+            "directory as this exe file.";
+      else
+        wordFileFound->Text = "";
+    }
     bestGuessesTextBox->Text = gcnew String(
         get_guesses(include, exclude, correctPositions, incorrectPositions)
             .data());
@@ -333,6 +374,15 @@ private:
   System::Void correctPositionsTextBox_TextChanged(System::Object ^ sender,
                                                    System::EventArgs ^ e) {
     correctPositions = to_standard_string(correctPositionsTextBox->Text);
+    if (englishWords.empty()) {
+      std::ifstream wordle_words("englishWords.dat");
+      if (wordle_words.fail())
+        wordFileFound->Text =
+            "Error: 'englishWords.dat' cannot be found in the same "
+            "directory as this exe file.";
+      else
+        wordFileFound->Text = "";
+    }
     bestGuessesTextBox->Text = gcnew String(
         get_guesses(include, exclude, correctPositions, incorrectPositions)
             .data());
@@ -342,6 +392,14 @@ private:
   System::Void incorrectPositionsTextBox_TextChanged(System::Object ^ sender,
                                                      System::EventArgs ^ e) {
     incorrectPositions = to_standard_string(incorrectPositionsTextBox->Text);
+    if (englishWords.empty()) {
+      std::ifstream wordle_words("englishWords.dat");
+      if (wordle_words.fail())
+        wordFileFound->Text = "Error: 'englishWords.dat' cannot be found in the same "
+                              "directory as this exe file.";
+      else
+        wordFileFound->Text = "";
+    }
     bestGuessesTextBox->Text = gcnew String(
         get_guesses(include, exclude, correctPositions, incorrectPositions)
             .data());
@@ -350,5 +408,8 @@ private:
 private:
   System::Void bestGuessesTextBox_TextChanged(System::Object ^ sender,
                                               System::EventArgs ^ e) {}
+
+private:
+  System::Void label6_Click(System::Object ^ sender, System::EventArgs ^ e) {}
 };
 } // namespace GetWordleWordGUI

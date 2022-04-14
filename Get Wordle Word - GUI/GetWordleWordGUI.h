@@ -253,7 +253,9 @@ private:
     this->Controls->Add(this->label2);
     this->Controls->Add(this->label1);
     this->Name = L"GetWordleWordGUI";
-    this->Text = L"Get Wordle Word";
+    this->Text = L"Wordle Solver";
+    this->Load += gcnew System::EventHandler(
+        this, &GetWordleWordGUI::GetWordleWordGUI_Load);
     this->ResumeLayout(false);
     this->PerformLayout();
   }
@@ -411,5 +413,9 @@ private:
 
 private:
   System::Void label6_Click(System::Object ^ sender, System::EventArgs ^ e) {}
+
+private:
+  System::Void GetWordleWordGUI_Load(System::Object ^ sender,
+                                     System::EventArgs ^ e) {}
 };
 } // namespace GetWordleWordGUI

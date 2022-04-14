@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <vector>
+#include <fstream>
 
 namespace GetWordleWordGUI {
 
@@ -10,6 +12,8 @@ using namespace System::Collections;
 using namespace System::Windows::Forms;
 using namespace System::Data;
 using namespace System::Drawing;
+
+std::vector<std::string> englishWords;
 
 static std::string to_standard_string(System::String ^ string) {
   using System::Runtime::InteropServices::Marshal;
@@ -22,9 +26,46 @@ static std::string to_standard_string(System::String ^ string) {
 }
 
 static std::string get_guesses(std::string include, std::string exclude,
-  std::string correctPositions,
-  std::string incorrectPositions) {
-  return correctPositions;
+                               std::string correctPositions,
+                               std::string incorrectPositions) {
+  if (correctPositions.empty())
+    correctPositions = ".....";
+  if (incorrectPositions.empty())
+    incorrectPositions = ".....";
+
+  while (correctPositions.length() < 5)
+    correctPositions.push_back('.');
+  while (incorrectPositions.length() < 5)
+    incorrectPositions.push_back('.');
+
+  std::string answer;
+  for (auto &i : englishWords) {
+    bool hasAllIncludedLetters = true;
+    for (auto &charac : include)
+      if (i.find(charac) == std::string::npos)
+        hasAllIncludedLetters = false;
+    bool doesNotHaveAllExcludedLetters = true;
+    for (auto &charac : exclude)
+      if (i.find(charac) != std::string::npos)
+        doesNotHaveAllExcludedLetters = false;
+
+    bool isInCorrectPositions = true;
+    for (auto pos = 0; pos < i.length(); pos++)
+      if (correctPositions.substr(pos, 1) != ".")
+        if (correctPositions.substr(pos, 1) != i.substr(pos, 1))
+          isInCorrectPositions = false;
+
+    bool noIncorrectPositions = true;
+    for (auto pos = 0; pos < i.length(); pos++)
+      if (incorrectPositions.substr(pos, 1) != ".")
+        if (incorrectPositions.substr(pos, 1) == i.substr(pos, 1))
+          noIncorrectPositions = false;
+
+    if (hasAllIncludedLetters && doesNotHaveAllExcludedLetters &&
+        isInCorrectPositions && noIncorrectPositions)
+      answer += i + "\n";
+  }
+  return answer;
 }
 
 std::string include, exclude, correctPositions, incorrectPositions;
@@ -50,6 +91,7 @@ protected:
     if (components) {
       delete components;
     }
+    englishWords.clear();
   }
 
 private:
@@ -104,6 +146,11 @@ private:
   /// the contents of this method with the code editor.
   /// </summary>
   void InitializeComponent(void) {
+    std::ifstream wordle_words("englishWords.dat");
+    std::string word;
+    while (wordle_words >> word)
+      englishWords.push_back(word);
+
     this->label1 = (gcnew System::Windows::Forms::Label());
     this->label2 = (gcnew System::Windows::Forms::Label());
     this->includeTextBox = (gcnew System::Windows::Forms::RichTextBox());
@@ -248,7 +295,11 @@ private:
                                         System::EventArgs ^ e) {}
 
 private:
-  System::Void label2_Click(System::Object ^ sender, System::EventArgs ^ e) {}
+  System::Void label2_Click(System::Object ^ sender, System::EventArgs ^ e) {
+    bestGuessesTextBox->Text = gcnew String(
+        get_guesses(include, exclude, correctPositions, incorrectPositions)
+            .data());
+  }
 
 private:
   System::Void pictureBox1_Click(System::Object ^ sender,
@@ -264,36 +315,24 @@ private:
   System::Void includeTextBox_TextChanged_1(System::Object ^ sender,
                                             System::EventArgs ^ e) {
     include = to_standard_string(includeTextBox->Text);
-    bestGuessesTextBox->Text = gcnew String(
-        get_guesses(include, exclude, correctPositions, incorrectPositions)
-            .data());
   }
 
 private:
   System::Void excludeTextBox_TextChanged(System::Object ^ sender,
                                           System::EventArgs ^ e) {
     exclude = to_standard_string(excludeTextBox->Text);
-    bestGuessesTextBox->Text = gcnew String(
-        get_guesses(include, exclude, correctPositions, incorrectPositions)
-            .data());
   }
 
 private:
   System::Void correctPositionsTextBox_TextChanged(System::Object ^ sender,
                                                    System::EventArgs ^ e) {
     correctPositions = to_standard_string(correctPositionsTextBox->Text);
-    bestGuessesTextBox->Text = gcnew String(
-        get_guesses(include, exclude, correctPositions, incorrectPositions)
-            .data());
   }
 
 private:
   System::Void incorrectPositionsTextBox_TextChanged(System::Object ^ sender,
                                                      System::EventArgs ^ e) {
     incorrectPositions = to_standard_string(incorrectPositionsTextBox->Text);
-    bestGuessesTextBox->Text = gcnew String(
-        get_guesses(include, exclude, correctPositions, incorrectPositions)
-            .data());
   }
 
 private:

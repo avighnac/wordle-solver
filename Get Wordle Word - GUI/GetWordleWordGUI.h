@@ -315,24 +315,36 @@ private:
   System::Void includeTextBox_TextChanged_1(System::Object ^ sender,
                                             System::EventArgs ^ e) {
     include = to_standard_string(includeTextBox->Text);
+    bestGuessesTextBox->Text = gcnew String(
+        get_guesses(include, exclude, correctPositions, incorrectPositions)
+            .data());
   }
 
 private:
   System::Void excludeTextBox_TextChanged(System::Object ^ sender,
                                           System::EventArgs ^ e) {
     exclude = to_standard_string(excludeTextBox->Text);
+    bestGuessesTextBox->Text = gcnew String(
+        get_guesses(include, exclude, correctPositions, incorrectPositions)
+            .data());
   }
 
 private:
   System::Void correctPositionsTextBox_TextChanged(System::Object ^ sender,
                                                    System::EventArgs ^ e) {
     correctPositions = to_standard_string(correctPositionsTextBox->Text);
+    bestGuessesTextBox->Text = gcnew String(
+        get_guesses(include, exclude, correctPositions, incorrectPositions)
+            .data());
   }
 
 private:
   System::Void incorrectPositionsTextBox_TextChanged(System::Object ^ sender,
                                                      System::EventArgs ^ e) {
     incorrectPositions = to_standard_string(incorrectPositionsTextBox->Text);
+    bestGuessesTextBox->Text = gcnew String(
+        get_guesses(include, exclude, correctPositions, incorrectPositions)
+            .data());
   }
 
 private:

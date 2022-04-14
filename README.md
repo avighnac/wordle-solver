@@ -1,4 +1,4 @@
-<h1 align="center">Get Wordle Word</h1>
+<h1 align="center">Wordle SOlver</h1>
 
 <div align="center">
  <p>... is a GUI tool to get the best wordle guess based on available information.</p>

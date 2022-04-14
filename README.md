@@ -1,0 +1,1 @@
+Get Wordle Word

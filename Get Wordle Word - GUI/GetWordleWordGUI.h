@@ -130,6 +130,7 @@ private:
     // label1
     //
     this->label1->AutoSize = true;
+    this->label1->ForeColor = System::Drawing::Color::White;
     this->label1->Location = System::Drawing::Point(12, 64);
     this->label1->Name = L"label1";
     this->label1->Size = System::Drawing::Size(110, 16);
@@ -141,6 +142,7 @@ private:
     // label2
     //
     this->label2->AutoSize = true;
+    this->label2->ForeColor = System::Drawing::Color::White;
     this->label2->Location = System::Drawing::Point(413, 50);
     this->label2->Name = L"label2";
     this->label2->Size = System::Drawing::Size(91, 16);
@@ -151,6 +153,16 @@ private:
     //
     // includeTextBox
     //
+    this->includeTextBox->BackColor = System::Drawing::Color::FromArgb(
+        static_cast<System::Int32>(static_cast<System::Byte>(83)),
+        static_cast<System::Int32>(static_cast<System::Byte>(141)),
+        static_cast<System::Int32>(static_cast<System::Byte>(78)));
+    this->includeTextBox->BorderStyle =
+        System::Windows::Forms::BorderStyle::None;
+    this->includeTextBox->Font = (gcnew System::Drawing::Font(
+        L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+        System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+    this->includeTextBox->ForeColor = System::Drawing::SystemColors::Window;
     this->includeTextBox->Location = System::Drawing::Point(15, 83);
     this->includeTextBox->Name = L"includeTextBox";
     this->includeTextBox->Size = System::Drawing::Size(241, 25);
@@ -162,6 +174,7 @@ private:
     // label3
     //
     this->label3->AutoSize = true;
+    this->label3->ForeColor = System::Drawing::Color::White;
     this->label3->Location = System::Drawing::Point(12, 122);
     this->label3->Name = L"label3";
     this->label3->Size = System::Drawing::Size(114, 16);
@@ -172,6 +185,16 @@ private:
     //
     // excludeTextBox
     //
+    this->excludeTextBox->BackColor = System::Drawing::Color::FromArgb(
+        static_cast<System::Int32>(static_cast<System::Byte>(58)),
+        static_cast<System::Int32>(static_cast<System::Byte>(58)),
+        static_cast<System::Int32>(static_cast<System::Byte>(60)));
+    this->excludeTextBox->BorderStyle =
+        System::Windows::Forms::BorderStyle::None;
+    this->excludeTextBox->Font = (gcnew System::Drawing::Font(
+        L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+        System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+    this->excludeTextBox->ForeColor = System::Drawing::Color::White;
     this->excludeTextBox->Location = System::Drawing::Point(15, 141);
     this->excludeTextBox->Name = L"excludeTextBox";
     this->excludeTextBox->Size = System::Drawing::Size(241, 25);
@@ -183,6 +206,7 @@ private:
     // label4
     //
     this->label4->AutoSize = true;
+    this->label4->ForeColor = System::Drawing::Color::White;
     this->label4->Location = System::Drawing::Point(15, 187);
     this->label4->Name = L"label4";
     this->label4->Size = System::Drawing::Size(192, 16);
@@ -191,7 +215,18 @@ private:
     //
     // correctPositionsTextBox
     //
+    this->correctPositionsTextBox->BackColor = System::Drawing::Color::FromArgb(
+        static_cast<System::Int32>(static_cast<System::Byte>(83)),
+        static_cast<System::Int32>(static_cast<System::Byte>(141)),
+        static_cast<System::Int32>(static_cast<System::Byte>(78)));
+    this->correctPositionsTextBox->BorderStyle =
+        System::Windows::Forms::BorderStyle::None;
+    this->correctPositionsTextBox->Font = (gcnew System::Drawing::Font(
+        L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+        System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+    this->correctPositionsTextBox->ForeColor = System::Drawing::Color::White;
     this->correctPositionsTextBox->Location = System::Drawing::Point(15, 206);
+    this->correctPositionsTextBox->MaxLength = 5;
     this->correctPositionsTextBox->Name = L"correctPositionsTextBox";
     this->correctPositionsTextBox->Size = System::Drawing::Size(241, 25);
     this->correctPositionsTextBox->TabIndex = 7;
@@ -202,6 +237,7 @@ private:
     // label5
     //
     this->label5->AutoSize = true;
+    this->label5->ForeColor = System::Drawing::Color::White;
     this->label5->Location = System::Drawing::Point(15, 245);
     this->label5->Name = L"label5";
     this->label5->Size = System::Drawing::Size(202, 16);
@@ -210,7 +246,19 @@ private:
     //
     // incorrectPositionsTextBox
     //
+    this->incorrectPositionsTextBox->BackColor =
+        System::Drawing::Color::FromArgb(
+            static_cast<System::Int32>(static_cast<System::Byte>(181)),
+            static_cast<System::Int32>(static_cast<System::Byte>(159)),
+            static_cast<System::Int32>(static_cast<System::Byte>(59)));
+    this->incorrectPositionsTextBox->BorderStyle =
+        System::Windows::Forms::BorderStyle::None;
+    this->incorrectPositionsTextBox->Font = (gcnew System::Drawing::Font(
+        L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular,
+        System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+    this->incorrectPositionsTextBox->ForeColor = System::Drawing::Color::White;
     this->incorrectPositionsTextBox->Location = System::Drawing::Point(15, 264);
+    this->incorrectPositionsTextBox->MaxLength = 5;
     this->incorrectPositionsTextBox->Name = L"incorrectPositionsTextBox";
     this->incorrectPositionsTextBox->Size = System::Drawing::Size(241, 25);
     this->incorrectPositionsTextBox->TabIndex = 9;
@@ -220,6 +268,16 @@ private:
     //
     // bestGuessesTextBox
     //
+    this->bestGuessesTextBox->BackColor = System::Drawing::Color::FromArgb(
+        static_cast<System::Int32>(static_cast<System::Byte>(18)),
+        static_cast<System::Int32>(static_cast<System::Byte>(18)),
+        static_cast<System::Int32>(static_cast<System::Byte>(19)));
+    this->bestGuessesTextBox->BorderStyle =
+        System::Windows::Forms::BorderStyle::None;
+    this->bestGuessesTextBox->Font = (gcnew System::Drawing::Font(
+        L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular,
+        System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+    this->bestGuessesTextBox->ForeColor = System::Drawing::Color::White;
     this->bestGuessesTextBox->Location = System::Drawing::Point(308, 73);
     this->bestGuessesTextBox->Name = L"bestGuessesTextBox";
     this->bestGuessesTextBox->Size = System::Drawing::Size(285, 228);
@@ -243,6 +301,10 @@ private:
     //
     this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
     this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+    this->BackColor = System::Drawing::Color::FromArgb(
+        static_cast<System::Int32>(static_cast<System::Byte>(18)),
+        static_cast<System::Int32>(static_cast<System::Byte>(18)),
+        static_cast<System::Int32>(static_cast<System::Byte>(19)));
     this->ClientSize = System::Drawing::Size(609, 312);
     this->Controls->Add(this->wordFileFound);
     this->Controls->Add(this->bestGuessesTextBox);

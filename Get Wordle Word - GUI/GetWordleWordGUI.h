@@ -33,12 +33,7 @@ std::string include, exclude, correctPositions, incorrectPositions;
 public
 ref class GetWordleWordGUI : public System::Windows::Forms::Form {
 public:
-  GetWordleWordGUI(void) {
-    InitializeComponent();
-    //
-    // TODO: Add the constructor code here
-    //
-  }
+  GetWordleWordGUI(void) { InitializeComponent(); }
 
 protected:
   /// <summary>
@@ -90,8 +85,6 @@ private:
   System::Windows::Forms::Label ^ wordFileFound;
 
 private:
-
-
 private:
 private:
 private:
@@ -305,7 +298,7 @@ private:
         static_cast<System::Int32>(static_cast<System::Byte>(18)),
         static_cast<System::Int32>(static_cast<System::Byte>(18)),
         static_cast<System::Int32>(static_cast<System::Byte>(19)));
-    this->ClientSize = System::Drawing::Size(609, 312);
+    this->ClientSize = System::Drawing::Size(612, 313);
     this->Controls->Add(this->wordFileFound);
     this->Controls->Add(this->bestGuessesTextBox);
     this->Controls->Add(this->incorrectPositionsTextBox);
@@ -322,7 +315,11 @@ private:
     this->Name = L"GetWordleWordGUI";
     this->Text = L"Wordle Solver";
     this->Load += gcnew System::EventHandler(
-        this, &GetWordleWordGUI::GetWordleWordGUI_Load);
+        this, &GetWordleWordGUI::GetWordleWordGUI_Resize);
+    this->ResizeEnd += gcnew System::EventHandler(
+        this, &GetWordleWordGUI::GetWordleWordGUI_Resize);
+    this->Resize += gcnew System::EventHandler(
+        this, &GetWordleWordGUI::GetWordleWordGUI_Resize);
     this->ResumeLayout(false);
     this->PerformLayout();
   }
@@ -383,8 +380,7 @@ private:
   System::Void label1_Click(System::Object ^ sender, System::EventArgs ^ e) {}
 
 private:
-  System::Void richTextBox1_TextChanged(System::Object ^ sender,
-                                        System::EventArgs ^ e) {}
+
 
 private:
   System::Void label2_Click(System::Object ^ sender, System::EventArgs ^ e) {
@@ -394,11 +390,10 @@ private:
   }
 
 private:
-  System::Void pictureBox1_Click(System::Object ^ sender,
-                                 System::EventArgs ^ e) {}
+
 
 private:
-  System::Void buttonA_Click(System::Object ^ sender, System::EventArgs ^ e) {}
+
 
 private:
   System::Void label3_Click(System::Object ^ sender, System::EventArgs ^ e) {}
@@ -484,5 +479,79 @@ private:
 private:
   System::Void GetWordleWordGUI_Load(System::Object ^ sender,
                                      System::EventArgs ^ e) {}
+
+private:
+  System::Void GetWordleWordGUI_Resize(System::Object ^ sender,
+                                          System::EventArgs ^ e) {
+    includeTextBox->Location =
+        System::Drawing::Point(GetWordleWordGUI::Size.Width * 15 / 630, GetWordleWordGUI::Size.Height * 83 / 360);
+    includeTextBox->Size =
+        System::Drawing::Size(GetWordleWordGUI::Size.Width * 241 / 630,
+                              GetWordleWordGUI::Size.Height * 25 / 360);
+
+    excludeTextBox->Location =
+        System::Drawing::Point(GetWordleWordGUI::Size.Width * 15 / 630,
+                               GetWordleWordGUI::Size.Height * 141 / 360);
+    excludeTextBox->Size =
+        System::Drawing::Size(GetWordleWordGUI::Size.Width * 241 / 630,
+                              GetWordleWordGUI::Size.Height * 25 / 360);
+
+    correctPositionsTextBox->Location =
+        System::Drawing::Point(GetWordleWordGUI::Size.Width * 15 / 630,
+                               GetWordleWordGUI::Size.Height * 206 / 360);
+    correctPositionsTextBox->Size =
+        System::Drawing::Size(GetWordleWordGUI::Size.Width * 241 / 630,
+                              GetWordleWordGUI::Size.Height * 25 / 360);
+
+    incorrectPositionsTextBox->Location =
+        System::Drawing::Point(GetWordleWordGUI::Size.Width * 15 / 630,
+                               GetWordleWordGUI::Size.Height * 264 / 360);
+    incorrectPositionsTextBox->Size =
+        System::Drawing::Size(GetWordleWordGUI::Size.Width * 241 / 630,
+                              GetWordleWordGUI::Size.Height * 25 / 360);
+
+    bestGuessesTextBox->Location =
+        System::Drawing::Point(GetWordleWordGUI::Size.Width * 308 / 630,
+                               GetWordleWordGUI::Size.Height * 73 / 360);
+    bestGuessesTextBox->Size =
+        System::Drawing::Size(GetWordleWordGUI::Size.Width * 285 / 630,
+                              GetWordleWordGUI::Size.Height * 228 / 360);
+
+
+    label1->Location =
+        System::Drawing::Point(GetWordleWordGUI::Size.Width * 12 / 630,
+                               GetWordleWordGUI::Size.Height * 64 / 360);
+    label1->Size =
+        System::Drawing::Size(GetWordleWordGUI::Size.Width * 110 / 630,
+                              GetWordleWordGUI::Size.Height * 16 / 360);
+
+    label2->Location =
+        System::Drawing::Point(GetWordleWordGUI::Size.Width * 413 / 630,
+                               GetWordleWordGUI::Size.Height * 50 / 360);
+    label2->Size =
+        System::Drawing::Size(GetWordleWordGUI::Size.Width * 91 / 630,
+                              GetWordleWordGUI::Size.Height * 16 / 360);
+
+    label3->Location =
+        System::Drawing::Point(GetWordleWordGUI::Size.Width * 12 / 630,
+                               GetWordleWordGUI::Size.Height * 122 / 360);
+    label3->Size =
+        System::Drawing::Size(GetWordleWordGUI::Size.Width * 114 / 630,
+                              GetWordleWordGUI::Size.Height * 16 / 360);
+
+    label4->Location =
+        System::Drawing::Point(GetWordleWordGUI::Size.Width * 15 / 630,
+                               GetWordleWordGUI::Size.Height * 187 / 360);
+    label4->Size =
+        System::Drawing::Size(GetWordleWordGUI::Size.Width * 192 / 630,
+                              GetWordleWordGUI::Size.Height * 16 / 360);
+
+    label5->Location =
+        System::Drawing::Point(GetWordleWordGUI::Size.Width * 15 / 630,
+                               GetWordleWordGUI::Size.Height * 245 / 360);
+    label5->Size =
+        System::Drawing::Size(GetWordleWordGUI::Size.Width * 202 / 630,
+                              GetWordleWordGUI::Size.Height * 16 / 360);
+  }
 };
 } // namespace GetWordleWordGUI

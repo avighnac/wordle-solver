@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/github/v/release/avighnac/wordle-solver?include_prereleases&label=Latest%20Release" />
  </div>
  <div align="center">
-   <img src="https://user-images.githubusercontent.com/74564976/163429736-e77fc9b9-64b8-41dc-8f4a-c2b529ec671e.png" />
+   <img src="https://user-images.githubusercontent.com/74564976/163709188-d8211802-cb43-4c5f-887d-cc45dfe900d7.png" />
  </div>
   
  ## Download instructions

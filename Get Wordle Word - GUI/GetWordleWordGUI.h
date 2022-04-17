@@ -109,6 +109,9 @@ private:
   /// the contents of this method with the code editor.
   /// </summary>
   void InitializeComponent(void) {
+    System::ComponentModel::ComponentResourceManager ^ resources =
+        (gcnew System::ComponentModel::ComponentResourceManager(
+            GetWordleWordGUI::typeid));
     this->label1 = (gcnew System::Windows::Forms::Label());
     this->label2 = (gcnew System::Windows::Forms::Label());
     this->includeTextBox = (gcnew System::Windows::Forms::RichTextBox());
@@ -252,6 +255,8 @@ private:
     this->Controls->Add(this->includeTextBox);
     this->Controls->Add(this->label2);
     this->Controls->Add(this->label1);
+    this->Icon = (cli::safe_cast<System::Drawing::Icon ^>(
+        resources->GetObject(L"$this.Icon")));
     this->Name = L"GetWordleWordGUI";
     this->Text = L"Wordle Solver";
     this->Load += gcnew System::EventHandler(

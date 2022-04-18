@@ -123,6 +123,9 @@ private:
     // label1
     //
     this->label1->AutoSize = true;
+    this->label1->Font = (gcnew System::Drawing::Font(
+        L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular,
+        System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
     this->label1->ForeColor = System::Drawing::Color::White;
     this->label1->Location = System::Drawing::Point(12, 64);
     this->label1->Name = L"label1";
@@ -135,6 +138,9 @@ private:
     // label2
     //
     this->label2->AutoSize = true;
+    this->label2->Font = (gcnew System::Drawing::Font(
+        L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular,
+        System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
     this->label2->ForeColor = System::Drawing::Color::White;
     this->label2->Location = System::Drawing::Point(413, 50);
     this->label2->Name = L"label2";
@@ -167,6 +173,9 @@ private:
     // label3
     //
     this->label3->AutoSize = true;
+    this->label3->Font = (gcnew System::Drawing::Font(
+        L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular,
+        System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
     this->label3->ForeColor = System::Drawing::Color::White;
     this->label3->Location = System::Drawing::Point(12, 122);
     this->label3->Name = L"label3";
@@ -199,6 +208,9 @@ private:
     // label4
     //
     this->label4->AutoSize = true;
+    this->label4->Font = (gcnew System::Drawing::Font(
+        L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular,
+        System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
     this->label4->ForeColor = System::Drawing::Color::White;
     this->label4->Location = System::Drawing::Point(15, 187);
     this->label4->Name = L"label4";
@@ -230,6 +242,9 @@ private:
     // label5
     //
     this->label5->AutoSize = true;
+    this->label5->Font = (gcnew System::Drawing::Font(
+        L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Regular,
+        System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
     this->label5->ForeColor = System::Drawing::Color::White;
     this->label5->Location = System::Drawing::Point(15, 245);
     this->label5->Name = L"label5";
@@ -517,6 +532,34 @@ private:
         System::Drawing::Size(GetWordleWordGUI::Size.Width * 285 / 630,
                               GetWordleWordGUI::Size.Height * 228 / 360);
 
+
+    label1->Font = (gcnew System::Drawing::Font(
+        L"Microsoft Sans Serif",
+        (GetWordleWordGUI::Size.Width + GetWordleWordGUI::Size.Height) * 7.8 /
+            990,
+        System::Drawing::FontStyle::Regular,
+        System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+    label2->Font = (gcnew System::Drawing::Font(
+        L"Microsoft Sans Serif", (GetWordleWordGUI::Size.Width + GetWordleWordGUI::Size.Height) * 7.8 / 990, System::Drawing::FontStyle::Regular,
+        System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+    label3->Font = (gcnew System::Drawing::Font(
+        L"Microsoft Sans Serif",
+        (GetWordleWordGUI::Size.Width + GetWordleWordGUI::Size.Height) * 7.8 /
+            990,
+        System::Drawing::FontStyle::Regular,
+        System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+    label4->Font = (gcnew System::Drawing::Font(
+        L"Microsoft Sans Serif",
+        (GetWordleWordGUI::Size.Width + GetWordleWordGUI::Size.Height) * 7.8 /
+            990,
+        System::Drawing::FontStyle::Regular,
+        System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+    label5->Font = (gcnew System::Drawing::Font(
+        L"Microsoft Sans Serif",
+        (GetWordleWordGUI::Size.Width + GetWordleWordGUI::Size.Height) * 7.8 /
+            990,
+        System::Drawing::FontStyle::Regular,
+        System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 
     label1->Location =
         System::Drawing::Point(GetWordleWordGUI::Size.Width * 12 / 630,
